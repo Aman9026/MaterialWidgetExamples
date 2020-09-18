@@ -1,6 +1,6 @@
 # MaterialWidgetExamples
 
-A new Flutter project.
+A Flutter project for teaching material widgets, Tabs, BottomNavigationBar, Stepper, SnackBar etc to students in a workshop
 
 ## Demo
 
