@@ -14,38 +14,82 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  int curr_step = 0;
-  List<Step> mySteps = [
-    new Step(
-        title: new Text("step1"),
-        content: new Text("content1"),
-        isActive: true),
-    new Step(
-        title: new Text("step2"),
-        content: new Text("content2"),
-        isActive: true),
-    new Step(
-        title: new Text("step3"),
-        content: new Text("content3"),
-        isActive: true),
-  ];
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
+  TabController tabController;
+  @override
+  void initState() {
+    super.initState();
+    tabController = new TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    tabController.dispose();
+    super.dispose();
+  }
+
+  // int curr_step = 0;
+  // List<Step> mySteps = [
+  //   new Step(
+  //       title: new Text("step1"),
+  //       content: new Text("content1"),
+  //       isActive: true),
+  //   new Step(
+  //       title: new Text("step2"),
+  //       content: new Text("content2"),
+  //       isActive: true),
+  //   new Step(
+  //       title: new Text("step3"),
+  //       content: new Text("content3"),
+  //       isActive: true),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: new AppBar(
-          title: new Text("Material widgets"),
-        ),
-        body: new Container(
-          child: new Stepper(
-            steps: mySteps,
-            currentStep: this.curr_step,
-            type: StepperType.vertical,
+      appBar: new AppBar(
+        title: new Text("Material widgets"),
+      ),
+      body: new TabBarView(
+        children: <Widget>[new NewPage("First"), new NewPage("Second")],
+        controller: tabController,
+      ),
+      bottomNavigationBar: new Material(
+        color: Colors.teal,
+        child: new TabBar(controller: tabController, tabs: <Widget>[
+          new Tab(
+            icon: new Icon(Icons.favorite),
           ),
-        ));
+          new Tab(
+            icon: new Icon(Icons.favorite),
+          )
+        ]),
+      ),
+    );
   }
 }
+
+class NewPage extends StatelessWidget {
+  final String title;
+  NewPage(this.title);
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Text("Title"),
+      ),
+    );
+  }
+}
+
+// body: new Container(
+//   child: new Stepper(
+//     steps: mySteps,
+//     currentStep: this.curr_step,
+//     type: StepperType.vertical,
+//   ),
+// )
 
 // class MyBody extends StatelessWidget {
 //   AlertDialog dialog = new AlertDialog(
