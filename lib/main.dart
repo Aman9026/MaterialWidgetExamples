@@ -63,6 +63,10 @@ class _HomePageState extends State<HomePage>
         children: <Widget>[new NewPage("First"), new NewPage("Second")],
         controller: tabController,
       ),
+      floatingActionButton: new FloatingActionButton(
+          child: new Icon(Icons.add),
+          backgroundColor: Colors.orangeAccent,
+          onPressed: () => print("button pressed")),
     );
   }
 }
