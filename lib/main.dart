@@ -50,14 +50,7 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: new AppBar(
         title: new Text("Material widgets"),
-      ),
-      body: new TabBarView(
-        children: <Widget>[new NewPage("First"), new NewPage("Second")],
-        controller: tabController,
-      ),
-      bottomNavigationBar: new Material(
-        color: Colors.teal,
-        child: new TabBar(controller: tabController, tabs: <Widget>[
+        bottom: new TabBar(controller: tabController, tabs: <Widget>[
           new Tab(
             icon: new Icon(Icons.favorite),
           ),
@@ -65,6 +58,10 @@ class _HomePageState extends State<HomePage>
             icon: new Icon(Icons.favorite),
           )
         ]),
+      ),
+      body: new TabBarView(
+        children: <Widget>[new NewPage("First"), new NewPage("Second")],
+        controller: tabController,
       ),
     );
   }
